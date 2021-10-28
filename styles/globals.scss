@@ -1,0 +1,30 @@
+html,
+body {
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	background-color: var(--primary-whitesmoke);
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--primary-black: #393e46;
+	--primary-grey: #929aab;
+	--primary-whitesmoke: #eeeeee;
+	--primary-white: #f7f7f7;
+
+	--logo-rotation-speed :4s;
+}
+
+main{
+	margin: 1.5rem 10%;
+}
