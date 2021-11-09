@@ -1,30 +1,66 @@
 .carouselContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .categoryContainer {
-	margin: 1.5rem 0;
+  margin: 1.5rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
 }
 .cardBody {
-	border: 1px solid var(--primary-black);
-	border-radius: 5px;
-	overflow: hidden;
-	display: flex;
-	padding: 0;
-	align-items: center;
-	img {
-		transition: all ease 0.3s;
-		width: 100%;
-		height: 100%;
-	}
-	
-	&:hover {
-		img {
-			transform: scale(1.5);
-		}
-	}
+  position: relative;
+  border: none;
+  overflow: hidden;
+  padding: 0;
+  img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    transition: all ease 0.4s;
+  }
+  span {
+    position: absolute;
+    text-transform: capitalize;
+    width: 100%;
+    background-color: #0000005f;
+    padding: 5px 0;
+    color: var(--primary-white);
+    left: 0;
+    bottom: 10%;
+    font-size: 24px;
+  }
+  &:hover {
+    img {
+      transform: scale(1.5);
+    }
+  }
 }
 
+.popularProductContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
 
+@media only screen and (max-width: 600px) {
+  .categoryContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cardBody {
+    span {
+      font-size: 18px;
+    }
+  }
+  .popularProductContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+  .categoryContainer {
+    span {
+      font-size: 12px;
+    }
+  }
+}

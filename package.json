@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.1",
     "@mui/material": "^5.0.2",
+    "axios": "^0.24.0",
     "keen-slider": "^5.5.1",
     "next": "11.1.2",
     "prettier": "^2.4.1",
