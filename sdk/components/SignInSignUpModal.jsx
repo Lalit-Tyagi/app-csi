@@ -3,17 +3,11 @@ import { Button, Dialog, IconButton, TextField } from '@mui/material'
 import { useState } from 'react'
 import styles from '../../styles/loginModal.module.scss'
 import { useFormik } from 'formik'
-import { useAxios } from '../Hooks/useAxios'
 import { useAuth } from '../Hooks/useAuth'
-export const SignInSignUpModal = ({
-	type,
-	open = false,
-	onClose,
-	...props
-}) => {
+import axios from 'axios'
+export const SignInSignUpModal = ({ type, open = false, onClose, ...props }) => {
 	const [state, setState] = useState(type)
-	const axios = useAxios()
-	const { login } = useAuth()
+	const { login, authFetch } = useAuth()
 	const signUpForm = useFormik({
 		initialValues: {
 			name: '',
@@ -40,13 +34,16 @@ export const SignInSignUpModal = ({
 			return errors
 		},
 		onSubmit: async (values) => {
-			const { data } = await axios('https://geolocation-db.com/json/')
-			const res = await axios.post('/api/register', {
-				...values,
-				ip: data.IPv4,
-				countryCode: data.country_code,
-				countryName: data.country_name,
-				state: data.state,
+			const data = await fetch('https://geolocation-db.com/json/').then((res) => res.json())
+			const res = await authFetch('/api/register', {
+				method: 'post',
+				body: {
+					...values,
+					ip: data.IPv4,
+					countryCode: data.country_code,
+					countryName: data.country_name,
+					state: data.state,
+				},
 			})
 			if (res.status === 200) {
 				login(values.email, values.password)

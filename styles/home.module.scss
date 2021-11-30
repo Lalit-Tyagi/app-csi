@@ -63,6 +63,9 @@
 	}
 	.popularProductContainer {
 		grid-template-columns: 1fr 1fr;
+		> div {
+			height: 200px;
+		}
 	}
 	.categoryContainer {
 		span {

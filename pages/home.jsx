@@ -1,6 +1,5 @@
-import axios from 'axios'
+import { useRouter } from 'next/dist/client/router'
 import Head from 'next/head'
-import { useEffect } from 'react'
 import Carousel from '../sdk/components/Carousel'
 import Footer from '../sdk/components/Footer'
 import Navbar from '../sdk/components/Navbar'
@@ -8,6 +7,7 @@ import ProductCard from '../sdk/components/ProductCard'
 import styles from '../styles/home.module.scss'
 
 export default function Home() {
+	const router = useRouter()
 	const cateogryList = [
 		{
 			name: 'apparel',
@@ -57,7 +57,12 @@ export default function Home() {
 				<div className={styles.categoryContainer}>
 					{cateogryList.map((item, index) => {
 						return (
-							<button key={index} className={styles.cardBody}>
+							<button
+								key={index}
+								className={styles.cardBody}
+								onClick={() => {
+									router.push('/collection/1')
+								}}>
 								<img src={item.imgUrl} alt={item.name} />
 								<span>{item.name}</span>
 							</button>
@@ -67,6 +72,9 @@ export default function Home() {
 
 				<h1 className={styles.sectionHeading}>Popular Poroducts</h1>
 				<div className={styles.popularProductContainer}>
+					<ProductCard />
+					<ProductCard />
+					<ProductCard />
 					<ProductCard />
 					<ProductCard />
 					<ProductCard />

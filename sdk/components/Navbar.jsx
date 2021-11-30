@@ -1,28 +1,25 @@
-import { ArrowBack } from '@mui/icons-material'
-import {
-	Divider,
-	IconButton,
-	ListItem,
-	Menu,
-	MenuItem,
-	SwipeableDrawer,
-} from '@mui/material'
+import { ArrowBack, Router } from '@mui/icons-material'
+import { Divider, IconButton, ListItem, Menu, MenuItem, SwipeableDrawer } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from '../../styles/navbar.module.scss'
 import { SignInSignUpModal } from './SignInSignUpModal'
 import MenuIcon from '@mui/icons-material/Menu'
 import PersonIcon from '@mui/icons-material/Person'
 import { useAuth } from '../Hooks/useAuth'
+import { useRouter } from 'next/dist/client/router'
 const Navbar = () => {
 	const menuIconRef = useRef(null)
 	const [drawar, setDrawar] = useState(false)
 	const [menu, setMenu] = useState(false)
-	const [openModal, setOpenModal] = useState({ type: '', open: false })
 	const { token, logout } = useAuth()
+	const [openModal, setOpenModal] = useState({ type: '', open: false })
 	const toggleMenu = () => {
 		setMenu(!menu)
 	}
-
+	useEffect(() => {
+		setOpenModal({ type: 'signIn', open: !token })
+	}, [token])
+	const router = useRouter()
 	return (
 		<>
 			<header className={styles.mainContainer}>
@@ -34,7 +31,11 @@ const Navbar = () => {
 						<MenuIcon />
 					</IconButton>
 
-					<div className={styles.brandContainer}>
+					<div
+						onClick={() => {
+							router.push('/home')
+						}}
+						className={styles.brandContainer}>
 						<div className={styles.logo}>
 							<img src="/assets/icons/logo.svg" alt="" />
 						</div>
